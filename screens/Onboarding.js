@@ -12,7 +12,7 @@ import {
 } from "react-native"
 import { useSelector, useDispatch } from 'react-redux';
 import { saveEmail, saveName, saveUser, signIn, stopLoading } from '../utils/userSlice';
-import { nameValidation, emailValidation } from '../utils/Validation';
+import { nameValidation, validateEmail } from '../utils/Validation';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -24,7 +24,7 @@ export function OnboardingScreen() {
 
     
     const onPress = () => {
-        if (!nameValidation(name) || !emailValidation(email)) {
+        if (!nameValidation(name) || !validateEmail(email)) {
             return Alert.alert(`Please provide us the following information to give you a better experience:\n${nameValidation(name) ? '' : '\nName'} \n ${emailValidation(email) ? '' : '\nEmail'}`)
         }
         const namePair = ["App_User_name", name];

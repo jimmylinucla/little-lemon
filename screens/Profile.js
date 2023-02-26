@@ -6,7 +6,7 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { MaskedTextInput } from "react-native-mask-text";
 import * as React from 'react'
 import * as ImagePicker from 'expo-image-picker';
-import { nameValidation, emailValidation } from "../utils/Validation";
+import { nameValidation, validateEmail } from "../utils/Validation";
 import UserAvatar from 'react-native-user-avatar';
 
 
@@ -81,7 +81,7 @@ export function ProfileScreen({navigation}) {
             }
         }
         if (user.email != email) {
-            if (emailValidation(email)) {
+            if (validateEmail(email)) {
                 dispatch(saveEmail(email));
                 changesArray.push(["App_User_email", email]);
             } else {
